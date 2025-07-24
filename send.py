@@ -8,17 +8,17 @@ from email import encoders
 # إعدادات البريد
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
-SENDER_EMAIL = ""// استبدل هذا بالإيميل الخاص بك
-SENDER_PASSWORD = ""// استبدل هذا بكلمة المرور الخاصة بك
+SENDER_EMAIL = "" # استبدل هذا ببريدك الإلكتروني
+SENDER_PASSWORD = "" # استبدل هذا بكلمة مرور بريدك الإلكتروني أو رمز التطبيق
 
-CV_PATH = r"D:\portfolio\MY CV.pdf"
+CV_PATH = r"D:\portfolio\MY CV.pdf" # استبدل هذا بالمسار الصحيح لملف السيرة الذاتية
 
 # تحميل الإيميلات من ملف
 def read_emails_from_file(filename):
     with open(filename, "r") as file:
         return [line.strip() for line in file if line.strip()]
 
-recipient_emails = read_emails_from_file(r"D:\portfolio\emails_batch_1.txt")
+recipient_emails = read_emails_from_file(r"D:\portfolio\emails_batch_1.txt") # استبدل هذا بالمسار الصحيح لملف الإيميلات
 
 # محتوى الرسالة
 subject = "Application for Front-End Developer Role"
