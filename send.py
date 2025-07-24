@@ -8,23 +8,21 @@ from email import encoders
 # إعدادات البريد
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
-SENDER_EMAIL = "" # استبدل هذا ببريدك الإلكتروني
-SENDER_PASSWORD = "" # استبدل هذا بكلمة مرور بريدك الإلكتروني أو رمز التطبيق
+SENDER_EMAIL = "" # ضع بريدك الإلكتروني هنا
+SENDER_PASSWORD = "" # ضع كلمة مرور بريدك هنا
 
-CV_PATH = r"D:\portfolio\MY CV.pdf" # استبدل هذا بالمسار الصحيح لملف السيرة الذاتية
+CV_PATH = r"D:\portfolio\MY CV.pdf" # ضع مسار ملف السيرة الذاتية هنا
 
 # تحميل الإيميلات من ملف
 def read_emails_from_file(filename):
     with open(filename, "r") as file:
         return [line.strip() for line in file if line.strip()]
 
-recipient_emails = read_emails_from_file(r"D:\portfolio\emails_batch_1.txt") # استبدل هذا بالمسار الصحيح لملف الإيميلات
+recipient_emails = read_emails_from_file(r"D:\portfolio\........") # ضع مسار ملف الإيميلات هنا
 
 # محتوى الرسالة
 subject = "Application for Front-End Developer Role"
 
-# قالب الرسالة
-# يمكنك تخصيص هذا القالب حسب الحاجة
 body_template = """
 <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 12px; border: 1px solid #ddd; max-width: 700px; margin: auto;">
     <h2 style="color: #333;">Dear {name},</h2>
@@ -93,8 +91,15 @@ def send_email(recipient_list):
 
             except Exception as e:
                 failed_count += 1
+                error_str = str(e)
+
                 print(f"❌ Failed to send email to {recipient}")
-                print(f"   📌 Reason: {e}\n")
+                print(f"   📌 Reason: {error_str}\n")
+
+                # التحقق من تجاوز الحد اليومي
+                if "Daily user sending limit exceeded" in error_str:
+                    print("⛔ Gmail daily sending limit reached. Stopping the script.\n")
+                    break
 
         server.quit()
         print(f"\n📬 Summary\n✅ Sent: {sent_count}\n❌ Failed: {failed_count}")
