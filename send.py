@@ -8,8 +8,8 @@ from email import encoders
 # إعدادات البريد
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
-SENDER_EMAIL = "ebrahimmohamed2325@gmail.com"
-SENDER_PASSWORD = "mvvrpkijyanwsruc"
+SENDER_EMAIL = ""// استبدل هذا بالإيميل الخاص بك
+SENDER_PASSWORD = ""// استبدل هذا بكلمة المرور الخاصة بك
 
 CV_PATH = r"D:\portfolio\MY CV.pdf"
 
@@ -18,11 +18,13 @@ def read_emails_from_file(filename):
     with open(filename, "r") as file:
         return [line.strip() for line in file if line.strip()]
 
-recipient_emails = read_emails_from_file(r"D:\portfolio\email.txt")
+recipient_emails = read_emails_from_file(r"D:\portfolio\emails_batch_1.txt")
 
 # محتوى الرسالة
 subject = "Application for Front-End Developer Role"
 
+# قالب الرسالة
+# يمكنك تخصيص هذا القالب حسب الحاجة
 body_template = """
 <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 12px; border: 1px solid #ddd; max-width: 700px; margin: auto;">
     <h2 style="color: #333;">Dear {name},</h2>
